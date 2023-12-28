@@ -43,7 +43,13 @@
                                     <td>{{ $task->id }}</td>
                                     <td>{{ $task->task }}</td>
                                     <td>{{ $task->status ? 'Completed' : 'Pending' }}</td>
-                                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                    <td>
+                                        <form action="{{ route('task.destroy', ['task' => $task->id]) }}" method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
