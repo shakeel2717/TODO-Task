@@ -38,12 +38,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>hi</td>
-                                <td>hi</td>
-                                <td>hi</td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
-                            </tr>
+                            @foreach ($tasks as $task)
+                                <tr>
+                                    <td>{{ $task->id }}</td>
+                                    <td>{{ $task->task }}</td>
+                                    <td>{{ $task->status ? 'Completed' : 'Pending' }}</td>
+                                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
