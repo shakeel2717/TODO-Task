@@ -55,7 +55,8 @@ class TaskController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $task = Task::find($id);
+        return view("task.edit", compact("task"));
     }
 
     /**
@@ -63,7 +64,15 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'task' => 'required|string'
+        ]);
+
+        $task = Task::find($id);
+        $task->task = $validatedData['task'];
+        $task->save();
+
+        return redirect()->route('task.index')->with('success', 'Task Updated Successfully');
     }
 
     /**

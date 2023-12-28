@@ -34,6 +34,7 @@
                                 <th>Id</th>
                                 <th>Task</th>
                                 <th>Status</th>
+                                <th>Edit</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,9 +45,14 @@
                                     <td>{{ $task->task }}</td>
                                     <td>{{ $task->status ? 'Completed' : 'Pending' }}</td>
                                     <td>
-                                        <form action="{{ route('task.destroy', ['task' => $task->id]) }}" method="POST">
+                                        <a href="{{ route('task.edit', ['task' => $task->id]) }}"
+                                            class="btn btn-primary btn-sm">Edit</a>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('task.destroy', ['task' => $task->id]) }}"
+                                            method="POST">
                                             @csrf
-                                            @method("DELETE")
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         </form>
                                     </td>
