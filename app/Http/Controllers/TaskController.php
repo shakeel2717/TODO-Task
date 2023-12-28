@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -30,6 +31,13 @@ class TaskController extends Controller
         $validatedData = $request->validate([
             'task' => 'required|string',
         ]);
+
+        // saving data to database
+        $task = new Task();
+        $task->task = $validatedData['task'];
+        $task->save();
+
+        return redirect()->route('task.index')->with('success', 'New Task Added Successfully');
     }
 
     /**
